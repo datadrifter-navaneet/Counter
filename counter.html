@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Counter</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .counter-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .counter-display {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 1.5rem;
+            font-family: 'Courier New', monospace;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .counter-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn-decrement {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            color: white;
+        }
+
+        .btn-increment {
+            background: linear-gradient(45deg, #4ecdc4, #44a08d);
+            color: white;
+        }
+
+        .btn-reset {
+            background: linear-gradient(45deg, #f7b733, #fc4a1a);
+            color: white;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        button:active {
+            transform: translateY(-1px);
+        }
+
+        .counter-info {
+            margin-top: 2rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 480px) {
+            .counter-display {
+                font-size: 3rem;
+            }
+            
+            button {
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="counter-container">
+        <div class="counter-display" id="counter">0</div>
+        <div class="counter-buttons">
+            <button class="btn-decrement" onclick="decrement()">-</button>
+            <button class="btn-reset" onclick="reset()">Reset</button>
+            <button class="btn-increment" onclick="increment()">+</button>
+        </div>
+        <div class="counter-info">
+            Simple Counter App - Click buttons to count!
+        </div>
+    </div>
+
+    <script>
+        let count = 0;
+        const counterDisplay = document.getElementById('counter');
+
+        function updateDisplay() {
+            counterDisplay.textContent = count;
+            
+            // Color coding based on count
+            if (count > 0) {
+                counterDisplay.style.color = '#4ecdc4';
+            } else if (count < 0) {
+                counterDisplay.style.color = '#ff6b6b';
+            } else {
+                counterDisplay.style.color = '#333';
+            }
+        }
+
+        function increment() {
+            count++;
+            updateDisplay();
+        }
+
+        function decrement() {
+            count--;
+            updateDisplay();
+        }
+
+        function reset() {
+            count = 0;
+            updateDisplay();
+        }
+    </script>
+</body>
+</html>
